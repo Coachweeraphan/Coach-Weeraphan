@@ -4,7 +4,7 @@
  */
 
 export const getLiffUrl = (liffId, courseId) => {
-    return `https://liff.line.me/${liffId}/liff/course/${courseId}`;
+    return `https://liff.line.me/${liffId}/liff`;
 };
 
 export const createCourseCompletionFlex = ({ courseTitle, courseId, liffId }) => {
@@ -42,7 +42,7 @@ export const createCourseCompletionFlex = ({ courseTitle, courseId, liffId }) =>
                         layout: "horizontal",
                         contents: [
                             { type: "text", text: "📋", size: "lg", flex: 0 },
-                            { type: "text", text: "กรุณาทำแบบประเมินติดตามผล\nสัปดาห์ที่ 0 (ทันทีหลังจบคาบ)", size: "sm", color: "#4b5563", wrap: true, margin: "md" }
+                            { type: "text", text: "กรุณาทำแบบประเมินติดตามผล\nAction Commitment", size: "sm", color: "#4b5563", wrap: true, margin: "md" }
                         ],
                         margin: "xl"
                     }

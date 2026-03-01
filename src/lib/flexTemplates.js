@@ -12,7 +12,7 @@
  * @returns {string} Full LIFF URL
  */
 export const getLiffUrl = (liffId, courseId) => {
-    return `https://liff.line.me/${liffId}/liff/course/${courseId}`;
+    return `https://liff.line.me/${liffId}/liff`;
 };
 
 /**
@@ -100,7 +100,7 @@ export const createCourseCompletionFlex = ({ courseTitle, courseId, liffId }) =>
                             },
                             {
                                 type: "text",
-                                text: "กรุณาทำแบบประเมินติดตามผล\nสัปดาห์ที่ 0 (ทันทีหลังจบคาบ)",
+                                text: "กรุณาทำแบบประเมินติดตามผล\nAction Commitment",
                                 size: "sm",
                                 color: "#4b5563",
                                 wrap: true,
