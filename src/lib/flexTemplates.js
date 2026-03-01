@@ -12,7 +12,7 @@
  * @returns {string} Full LIFF URL
  */
 export const getLiffUrl = (liffId, courseId) => {
-    return `https://liff.line.me/${liffId}/liff`;
+    return `https://coach-weeraphan.vercel.app/liff/`;
 };
 
 /**

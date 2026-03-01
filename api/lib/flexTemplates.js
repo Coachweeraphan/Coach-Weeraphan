@@ -4,7 +4,7 @@
  */
 
 export const getLiffUrl = (liffId, courseId) => {
-    return `https://liff.line.me/${liffId}/liff`;
+    return `https://coach-weeraphan.vercel.app/liff/`;
 };
 
 export const createCourseCompletionFlex = ({ courseTitle, courseId, liffId }) => {
