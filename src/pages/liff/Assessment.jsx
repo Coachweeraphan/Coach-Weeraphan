@@ -523,7 +523,7 @@ const LiffAssessment = () => {
                                         {selectedFeedback.message}
                                     </p>
                                     <p className="text-xs text-slate-400 border-t border-slate-100 pt-3">
-                                        From อาจารยวรพนธ มณวงศ
+                                        From อาจารย์วีรพันธ์ มณีวงศ์
                                     </p>
                                 </div>
                             ) : (
