@@ -423,16 +423,16 @@ const CourseManage = () => {
             </div>
 
             {/* Course List */}
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-visible">
                 <table className="w-full text-left border-collapse">
                     <thead className="bg-slate-50 text-slate-600 text-xs uppercase font-semibold tracking-wider border-b border-slate-200">
                         <tr>
-                            <th className="p-5">Course Name</th>
+                            <th className="p-5 rounded-tl-2xl">Course Name</th>
                             <th className="p-5">End Date</th>
                             <th className="p-5">Registration Key</th>
                             <th className="p-5">Linked Forms</th>
                             <th className="p-5">Status</th>
-                            <th className="p-5 text-right">Actions</th>
+                            <th className="p-5 text-right rounded-tr-2xl">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100">
