@@ -196,9 +196,9 @@ const ResponseViewer = () => {
 
     // Get user info with fallback
     const getUserInfo = (userId) => {
-        const user = users[userId];
+        const user = userId ? users[userId] : null;
         return {
-            displayName: user?.displayName || userId,
+            displayName: user?.displayName || userId || 'Unknown User',
             department: user?.department || '',
             position: user?.position || ''
         };
@@ -258,7 +258,9 @@ const ResponseViewer = () => {
     const respondingUserIds = courseResponses.map(r => r.userId);
 
     // Union of enrolled users + users who have responded (in case of legacy data)
-    const uniqueUsers = [...new Set([...enrolledUserIds, ...respondingUserIds])].sort();
+    const uniqueUsers = [...new Set([...enrolledUserIds, ...respondingUserIds])]
+        .filter(id => typeof id === 'string' && id.trim() !== '')
+        .sort();
 
     // Count users who have submitted AT LEAST ONE response
     const submittedUsersCount = uniqueUsers.filter(userId =>
@@ -691,7 +693,7 @@ const ResponseViewer = () => {
         worksheet.getColumn('answer').width = colMaxLengths.answer;
 
         // Generate safe filename
-        const safeName = userInfo.displayName.replace(/[^a-zA-Z0-9ก-๙_\-\s]/g, '').trim() || 'User';
+        const safeName = (userInfo.displayName || 'User').replace(/[^a-zA-Z0-9ก-๙_\-\s]/g, '').trim() || 'User';
         const safeCourseName = getCourseName(selectedCourseId).replace(/[^a-zA-Z0-9ก-๙_\-\s]/g, '').trim() || 'Course';
         const fileName = `${safeName}_${safeCourseName}_Report.xlsx`;
 
@@ -971,7 +973,7 @@ const ResponseViewer = () => {
                                             <td className="p-4 pl-6 font-medium text-slate-700 sticky left-0 bg-white group-hover:bg-slate-50 border-r border-slate-100 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]">
                                                 <div className="flex items-center gap-2">
                                                     <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-500 flex items-center justify-center text-xs font-bold">
-                                                        {userInfo.displayName.charAt(0).toUpperCase()}
+                                                        {(userInfo.displayName || 'U').charAt(0).toUpperCase()}
                                                     </div>
                                                     <div>
                                                         <div className="font-medium">{userInfo.displayName}</div>
@@ -1214,12 +1216,14 @@ const ResponseViewer = () => {
                         </thead>
                         <tbody className="divide-y divide-slate-100">
                             {filteredResponses.length === 0 ? (
-                                <tr><td colSpan="5" className="p-12 text-center text-slate-400">
-                                    <div className="flex flex-col items-center gap-2">
-                                        <div className="p-3 bg-slate-50 rounded-full"><Search className="text-slate-300" size={24} /></div>
-                                        <p>No responses found for {getCourseWeekLabel(selectedWeek)}.</p>
-                                    </div>
-                                </td></tr>
+                                <tr>
+                                    <td colSpan="5" className="p-12 text-center text-slate-400">
+                                        <div className="flex flex-col items-center gap-2">
+                                            <div className="p-3 bg-slate-50 rounded-full"><Search className="text-slate-300" size={24} /></div>
+                                            <p>No responses found for {getCourseWeekLabel(selectedWeek)}.</p>
+                                        </div>
+                                    </td>
+                                </tr>
                             ) : (
                                 filteredResponses.map(response => {
                                     const userInfo = getUserInfo(response.userId);
@@ -1228,7 +1232,7 @@ const ResponseViewer = () => {
                                             <td className="p-4 pl-6">
                                                 <div className="flex items-center gap-3">
                                                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-100 to-violet-200 text-indigo-700 flex items-center justify-center font-bold text-sm shadow-inner border border-white/50">
-                                                        {userInfo.displayName.charAt(0).toUpperCase()}
+                                                        {(userInfo.displayName || 'U').charAt(0).toUpperCase()}
                                                     </div>
                                                     <div>
                                                         <div className="font-medium text-slate-700">{userInfo.displayName}</div>

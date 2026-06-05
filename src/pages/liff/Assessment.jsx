@@ -328,12 +328,21 @@ const LiffAssessment = () => {
                                         )}
                                     >
                                         <div className="flex justify-between items-start mb-2">
-                                            <span className={clsx(
-                                                "font-black text-3xl",
-                                                isSubmitted ? "text-emerald-200" : isAvailable ? "text-indigo-100 group-hover:text-indigo-200" : "text-slate-200"
-                                            )}>
-                                                {getWeekShortLabel(course, week)}
-                                            </span>
+                                            {(() => {
+                                                const shortLabel = getWeekShortLabel(course, week);
+                                                return (
+                                                    <span className={clsx(
+                                                        "font-black transition-all",
+                                                        shortLabel.length > 20 ? "text-sm" :
+                                                        shortLabel.length > 16 ? "text-base" :
+                                                        shortLabel.length > 12 ? "text-lg" :
+                                                        shortLabel.length > 8 ? "text-2xl" : "text-3xl",
+                                                        isSubmitted ? "text-emerald-200" : isAvailable ? "text-indigo-100 group-hover:text-indigo-200" : "text-slate-200"
+                                                    )}>
+                                                        {shortLabel}
+                                                    </span>
+                                                );
+                                            })()}
                                             {isSubmitted ? (
                                                 <div className="w-8 h-8 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
                                                     <Check size={16} strokeWidth={3} />

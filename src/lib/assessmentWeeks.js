@@ -26,7 +26,12 @@ export const getWeekLabel = (course, week) => {
 };
 
 export const getWeekShortLabel = (course, week) => {
+    const key = String(week);
+    if (course?.weekLabels?.[key]) {
+        return course.weekLabels[key];
+    }
     const label = getWeekLabel(course, week);
-    const fallback = DEFAULT_WEEK_SHORT_LABELS[String(week)] || label;
+    const fallback = DEFAULT_WEEK_SHORT_LABELS[key] || label;
     return label.length > 14 ? fallback : label;
 };
+
